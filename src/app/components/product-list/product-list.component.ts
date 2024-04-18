@@ -26,7 +26,7 @@ export class ProductListComponent implements OnInit {
       setTimeout(() => {
         this.products = data;
         this.isLoading = false;
-      }, 500);
+      }, 200);
     });
   }
 }

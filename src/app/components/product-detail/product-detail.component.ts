@@ -43,7 +43,7 @@ export class ProductDetailComponent {
         this.product = data;
         this.title.setTitle(this.product!.name);
         this.isLoading = false;
-      }, 500);
+      }, 200);
     });
   }
 

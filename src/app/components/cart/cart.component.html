@@ -1,31 +1,33 @@
-<a
-  class="my-4 flex items-center gap-2 text-sm font-medium cursor-pointer text-gray-900"
-  (click)="goBack()"
->
-  <ng-icon name="heroArrowLeftSolid"></ng-icon>
-  <span>Go back</span>
-</a>
-
-<h1 class="my-4 text-2xl font-bold text-gray-900">Shoping Cart</h1>
-
-@if (!cart.length) {
-<div class="text-center">
-  There is no Product in your cart.
-  <a routerLink="/products" class="underline text-indigo-600"
-    >Go back to product list</a
+<section @open-close-trigger>
+  <a
+    class="my-4 flex items-center gap-2 text-sm font-medium cursor-pointer text-gray-900"
+    (click)="goBack()"
   >
-  to shoping now 👌
-</div>
-}@else {
-<div class="grid grid-cols-1 gap-x-8 lg:grid-cols-2">
-  <div>
-    @for (product of cart; track $index) {
-    <app-cart-item [product]="product"></app-cart-item>
-    }
-  </div>
+    <ng-icon name="heroArrowLeftSolid"></ng-icon>
+    <span>Go back</span>
+  </a>
 
-  <div>
-    <app-cart-payment></app-cart-payment>
+  <h1 class="my-4 text-2xl font-bold text-gray-900">Shoping Cart</h1>
+
+  @if (!cart.length) {
+  <div class="text-center">
+    There is no Product in your cart.
+    <a routerLink="/products" class="underline text-indigo-600"
+      >Go back to product list</a
+    >
+    to shoping now 👌
   </div>
-</div>
-}
+  }@else {
+  <div class="grid grid-cols-1 gap-x-8 lg:grid-cols-2">
+    <div>
+      @for (product of cart; track $index) {
+      <app-cart-item [product]="product"></app-cart-item>
+      }
+    </div>
+
+    <div>
+      <app-cart-payment></app-cart-payment>
+    </div>
+  </div>
+  }
+</section>
