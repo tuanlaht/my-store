@@ -1,29 +1,50 @@
-import { heroShoppingCart } from '@ng-icons/heroicons/outline';
+import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
+import { heroShoppingCart } from '@ng-icons/heroicons/outline';
 import { heroArrowLeftSolid } from '@ng-icons/heroicons/solid';
 import { Product } from '../../models/Product';
+import { CartService } from '../../services/cart.service';
 import { ProductService } from '../../services/product.service';
 import { InputQuantityComponent } from '../input-quantity/input-quantity.component';
+import { LoadingSpinnerComponent } from '../loading-spinner/loading-spinner.component';
+import { Title } from '@angular/platform-browser';
+import { fadeAnimation } from '../../animations';
 
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [NgIconComponent, RouterLink, InputQuantityComponent],
+  imports: [
+    NgIconComponent,
+    RouterLink,
+    InputQuantityComponent,
+    LoadingSpinnerComponent,
+  ],
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.css',
   providers: [provideIcons({ heroArrowLeftSolid, heroShoppingCart })],
+  animations: [fadeAnimation],
 })
 export class ProductDetailComponent {
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private cartService: CartService,
+    private title: Title
+  ) {}
 
   quantity: number = 1;
+  isLoading: boolean = false;
 
   @Input()
   set id(id: string) {
+    this.isLoading = true;
     this.productService.getProductById(Number(id)).subscribe((data) => {
-      this.product = data;
+      setTimeout(() => {
+        this.product = data;
+        this.title.setTitle(this.product!.name);
+        this.isLoading = false;
+      }, 500);
     });
   }
 
@@ -35,6 +56,6 @@ export class ProductDetailComponent {
       quantity: this.quantity,
     };
 
-    this.productService.addToCart(item);
+    this.cartService.addItem(item);
   }
 }

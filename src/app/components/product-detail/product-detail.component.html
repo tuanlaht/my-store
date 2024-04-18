@@ -6,12 +6,12 @@
   <span>Back to Product List</span>
 </a>
 
-@if (!product) {
-<div class="text-center">Product not found</div>
-} @else {
-<div>
-  <div class="grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2">
-    <div class="aspect-square">
+@if (isLoading) {
+<app-loading-spinner></app-loading-spinner>
+} @if (!isLoading) { @if (product) {
+<div @open-close-trigger>
+  <div class="grid grid-cols-1 gap-x-6 gap-y-6 lg:grid-cols-2">
+    <div class="aspect-square rounded-lg overflow-hidden">
       <img
         src="{{ product.url }}"
         alt="{{ product.name }}"
@@ -31,7 +31,7 @@
       <div class="mt-8">
         <app-input-quantity [(quantity)]="quantity"></app-input-quantity>
 
-        <button class="mt-2 btn-primary" (click)="addToCart()">
+        <button class="mt-4 btn-primary" (click)="addToCart()">
           ADD TO CART
           <ng-icon name="heroShoppingCart" size="20"></ng-icon>
         </button>
@@ -39,4 +39,6 @@
     </div>
   </div>
 </div>
-}
+}@else {
+<div class="text-center">Product not found</div>
+} }

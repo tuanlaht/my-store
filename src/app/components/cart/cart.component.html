@@ -6,17 +6,26 @@
   <span>Go back</span>
 </a>
 
-<h1 class="my-4 text-2xl font-bold text-gray-900">Cart</h1>
+<h1 class="my-4 text-2xl font-bold text-gray-900">Shoping Cart</h1>
 
-@for (product of cart; track $index) {
-<div>{{ product.name }}</div>
-<div>{{ product.quantity }}</div>
-}@empty {
+@if (!cart.length) {
 <div class="text-center">
   There is no Product in your cart.
   <a routerLink="/products" class="underline text-indigo-600"
     >Go back to product list</a
   >
   to shoping now 👌
+</div>
+}@else {
+<div class="grid grid-cols-1 gap-x-8 lg:grid-cols-2">
+  <div>
+    @for (product of cart; track $index) {
+    <app-cart-item [product]="product"></app-cart-item>
+    }
+  </div>
+
+  <div>
+    <app-cart-payment></app-cart-payment>
+  </div>
 </div>
 }

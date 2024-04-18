@@ -1,0 +1,25 @@
+<div class="flex border-t-[1px] py-8 justify-between items-start">
+  <div class="flex gap-8">
+    <div class="aspect-square overflow-hidden rounded-lg">
+      <img
+        class="w-[180px] h-[180px] object-cover object-center"
+        src="{{ product.url }}"
+        alt="{{ product.name }}"
+      />
+    </div>
+
+    <div class="text-gray-800">
+      <div class="text-lg font-semibold">{{ product.name }}</div>
+      <div class="">${{ product.price }}</div>
+    </div>
+
+    <app-input-quantity
+      [(quantity)]="product.quantity"
+      (quantityChange)="onChangeQuantity()"
+    ></app-input-quantity>
+  </div>
+
+  <button (click)="onRemoveProduct(product.id)">
+    <ng-icon name="heroXMarkSolid"></ng-icon>
+  </button>
+</div>

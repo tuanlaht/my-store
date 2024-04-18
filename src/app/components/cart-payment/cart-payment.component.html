@@ -1,0 +1,78 @@
+<div class="p-6 bg-indigo-100 bg-opacity-30 text-gray-900 rounded-lg">
+  <h2 class="text-xl mb-6 font-semibold">
+    Order total: ${{ totalPrice | async }}
+  </h2>
+
+  <form class="flex flex-col" [formGroup]="form" (ngSubmit)="onCheckout()">
+    <div class="border-b-[1px] py-3 flex justify-between">
+      <label
+        class="text-sm text-gray-500 min-w-[200px] max-w-[200px]"
+        for="fullName"
+        >Full Name</label
+      >
+      <div class="flex-1">
+        <input
+          id="fullName"
+          name="fullName"
+          class="t-input w-full"
+          type="text"
+          placeholder="(Minimum 3 characters)"
+          formControlName="fullName"
+        />
+
+        @if (form.get('fullName')!.invalid && form.get('fullName')!.touched) {
+        <div class="input-text-error">
+          Full name required minium 3 characters
+        </div>
+        }
+      </div>
+    </div>
+
+    <div class="border-b-[1px] py-3 flex justify-between">
+      <label
+        class="text-sm text-gray-500 min-w-[200px] max-w-[200px]"
+        for="address"
+        >Address</label
+      >
+      <div class="flex-1">
+        <input
+          id="address"
+          name="address"
+          class="t-input w-full"
+          type="text"
+          placeholder="(Minimum 6 characters)"
+          formControlName="address"
+        />
+
+        @if (form.get('address')!.invalid && form.get('address')!.touched){
+        <div class="input-text-error">Address required minium 6 characters</div>
+        }
+      </div>
+    </div>
+
+    <div class="border-b-[1px] py-3 flex justify-between">
+      <label
+        class="text-sm text-gray-500 min-w-[200px] max-w-[200px]"
+        for="creditCardNumber"
+        >Credit Card Number</label
+      >
+      <div class="flex-1">
+        <input
+          id="creditCardNumber"
+          name="creditCardNumber"
+          class="t-input w-full"
+          type="text"
+          placeholder="(16 digit number)"
+          formControlName="creditCardNumber"
+        />
+
+        @if (form.get('creditCardNumber')!.invalid &&
+        form.get('creditCardNumber')!.touched) {
+        <div class="input-text-error">Credit Card Number must be 16 digits</div>
+        }
+      </div>
+    </div>
+
+    <button class="mt-5 btn-primary w-full !block">Checkout</button>
+  </form>
+</div>

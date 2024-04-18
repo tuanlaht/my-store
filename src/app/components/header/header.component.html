@@ -1,9 +1,10 @@
 <nav
-  class="p-4 bg-indigo-600 flex justify-between text-white text-lg font-medium"
+  class="p-4 bg-indigo-600 flex justify-between text-white text-lg font-medium sticky z-50 top-0"
 >
-  <a routerLink="" class="cursor-pointer">My Store</a>
+  <a routerLink="" class="cursor-pointer">My Store 🐧</a>
 
-  <a routerLink="cart">
+  <a routerLink="cart" class="flex gap-2">
     <ng-icon name="heroShoppingCart" size="26" class="cursor-pointer"></ng-icon>
+    <span> ({{ totalQuantityInCart | async }})</span>
   </a>
 </nav>

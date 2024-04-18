@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
+import { Observable, Subject, map } from 'rxjs';
 import { Product, ProductWithQuantity } from '../models/Product';
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
   private cart: ProductWithQuantity[] = [];
+  modifyCart = new Subject<void>();
 
   constructor(private http: HttpClient) {}
 
@@ -28,6 +29,8 @@ export class ProductService {
     } else {
       existingProduct.quantity = existingProduct.quantity + product.quantity;
     }
+
+    this.modifyCart.next();
   }
 
   getCart(): ProductWithQuantity[] {
@@ -36,10 +39,12 @@ export class ProductService {
 
   deleteItemInCart(id: number): void {
     this.cart = this.cart.filter((item) => item.id !== id);
+    this.modifyCart.next();
   }
 
   clearCart(): void {
     this.cart = [];
+    this.modifyCart.next();
   }
 
   getTotalPriceInCart(): number {
@@ -47,5 +52,9 @@ export class ProductService {
       (total, product) => total + product.price * product.quantity,
       0
     );
+  }
+
+  getTotalQuantityInCart(): number {
+    return this.cart.reduce((total, product) => total + product.quantity, 0);
   }
 }
