@@ -1,0 +1,23 @@
+<div class="relative inline-block">
+  <button
+    class="font-bold text-lg absolute left-0 ml-2 top-1/2 -translate-y-1/2"
+    (click)="onDecrease()"
+  >
+    <ng-icon name="heroMinus" size="16"></ng-icon>
+  </button>
+
+  <button
+    class="font-bold text-lg absolute right-0 mr-2 top-1/2 -translate-y-1/2"
+    (click)="onIncrease()"
+  >
+    <ng-icon name="heroPlus" size="16"></ng-icon>
+  </button>
+
+  <input
+    ngModel="{{ quantity }}"
+    class="input-quantity t-input w-[90px] px-2 text-center font-semibold"
+    type="number"
+    min="10"
+    (input)="onChangeQuantity($event)"
+  />
+</div>

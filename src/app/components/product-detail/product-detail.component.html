@@ -1,0 +1,42 @@
+<a
+  routerLink="/products"
+  class="my-4 flex items-center gap-2 text-sm font-medium cursor-pointer text-gray-900"
+>
+  <ng-icon name="heroArrowLeftSolid"></ng-icon>
+  <span>Back to Product List</span>
+</a>
+
+@if (!product) {
+<div class="text-center">Product not found</div>
+} @else {
+<div>
+  <div class="grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2">
+    <div class="aspect-square">
+      <img
+        src="{{ product.url }}"
+        alt="{{ product.name }}"
+        class="h-full w-full object-cover object-center"
+      />
+    </div>
+
+    <div class="text-gray-900">
+      <h1 class="mb-4 text-2xl font-bold sm:text-3xl">
+        {{ product.name }}
+      </h1>
+
+      <div class="text-3xl tracking-tight">${{ product.price }}</div>
+
+      <p>{{ product.description }}</p>
+
+      <div class="mt-8">
+        <app-input-quantity [(quantity)]="quantity"></app-input-quantity>
+
+        <button class="mt-2 btn-primary" (click)="addToCart()">
+          ADD TO CART
+          <ng-icon name="heroShoppingCart" size="20"></ng-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+}

@@ -1,0 +1,22 @@
+<a
+  class="my-4 flex items-center gap-2 text-sm font-medium cursor-pointer text-gray-900"
+  (click)="goBack()"
+>
+  <ng-icon name="heroArrowLeftSolid"></ng-icon>
+  <span>Go back</span>
+</a>
+
+<h1 class="my-4 text-2xl font-bold text-gray-900">Cart</h1>
+
+@for (product of cart; track $index) {
+<div>{{ product.name }}</div>
+<div>{{ product.quantity }}</div>
+}@empty {
+<div class="text-center">
+  There is no Product in your cart.
+  <a routerLink="/products" class="underline text-indigo-600"
+    >Go back to product list</a
+  >
+  to shoping now 👌
+</div>
+}
