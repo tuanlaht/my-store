@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../../services/product.service';
-import { ProductItemComponent } from '../product-item/product-item.component';
-import { Product } from '../../models/Product';
-import { LoadingSpinnerComponent } from '../loading-spinner/loading-spinner.component';
-import { animate, style, transition, trigger } from '@angular/animations';
 import { fadeAnimation } from '../../animations';
+import { Product } from '../../models/Product';
+import { ProductService } from '../../services/product.service';
+import { LoadingSpinnerComponent } from '../loading-spinner/loading-spinner.component';
+import { ProductItemComponent } from '../product-item/product-item.component';
 
 @Component({
   selector: 'app-product-list',

@@ -1,16 +1,15 @@
-import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, Input } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
 import { heroShoppingCart } from '@ng-icons/heroicons/outline';
 import { heroArrowLeftSolid } from '@ng-icons/heroicons/solid';
+import { fadeAnimation } from '../../animations';
 import { Product } from '../../models/Product';
 import { CartService } from '../../services/cart.service';
 import { ProductService } from '../../services/product.service';
 import { InputQuantityComponent } from '../input-quantity/input-quantity.component';
 import { LoadingSpinnerComponent } from '../loading-spinner/loading-spinner.component';
-import { Title } from '@angular/platform-browser';
-import { fadeAnimation } from '../../animations';
 
 @Component({
   selector: 'app-product-detail',
