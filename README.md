@@ -1,10 +1,10 @@
 # MyStore
 
-The project uses angular, describing simple functions of a store front page
+The project uses angular, describing simple functions of a storefront page
 
 ## About The Project
 
-![about project](src\assets\example.png)
+![about project](https://github.com/tuanlaht/my-store/blob/master/src/assets/example.png?raw=true)
 
 This project utilizes Angular v17 and Tailwind CSS to develop a simple online store. Its main functionalities include:
 
