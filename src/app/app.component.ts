@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
+import { ToastComponent } from './components/toast/toast.component';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,7 @@ import { ProductListComponent } from './components/product-list/product-list.com
     HeaderComponent,
     ProductDetailComponent,
     ProductListComponent,
+    ToastComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

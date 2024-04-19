@@ -5,7 +5,11 @@
     Order total: ${{ totalPrice | async }}
   </h2>
 
-  <form class="flex flex-col" [formGroup]="form" (ngSubmit)="onCheckout()">
+  <form
+    #userForm="ngForm"
+    class="flex flex-col"
+    (ngSubmit)="onCheckout(userForm)"
+  >
     <div class="border-b-[1px] py-3 flex justify-between">
       <label
         class="text-sm text-gray-500 min-w-[200px] max-w-[200px]"
@@ -19,10 +23,13 @@
           class="t-input w-full"
           type="text"
           placeholder="(Minimum 3 characters)"
-          formControlName="fullName"
+          [(ngModel)]="form.fullName"
+          #name="ngModel"
+          required
+          minlength="3"
         />
 
-        @if (form.get('fullName')!.invalid && form.get('fullName')!.touched) {
+        @if (name!.invalid && name!.touched) {
         <div class="input-text-error">
           Full name required minium 3 characters
         </div>
@@ -43,10 +50,13 @@
           class="t-input w-full"
           type="text"
           placeholder="(Minimum 6 characters)"
-          formControlName="address"
+          [(ngModel)]="form.address"
+          #address="ngModel"
+          required
+          minlength="6"
         />
 
-        @if (form.get('address')!.invalid && form.get('address')!.touched){
+        @if (address!.invalid && address!.touched){
         <div class="input-text-error">Address required minium 6 characters</div>
         }
       </div>
@@ -63,13 +73,17 @@
           id="creditCardNumber"
           name="creditCardNumber"
           class="t-input w-full"
-          type="text"
+          type="tel"
           placeholder="(16 digit number)"
-          formControlName="creditCardNumber"
+          [(ngModel)]="form.creditCardNumber"
+          #creditCardNumber="ngModel"
+          minlength="16"
+          maxlength="16"
+          pattern="\d{16}"
+          required
         />
 
-        @if (form.get('creditCardNumber')!.invalid &&
-        form.get('creditCardNumber')!.touched) {
+        @if (creditCardNumber!.invalid && creditCardNumber!.touched) {
         <div class="input-text-error">Credit Card Number must be 16 digits</div>
         }
       </div>

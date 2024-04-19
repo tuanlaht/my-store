@@ -10,6 +10,7 @@ import { CartService } from '../../services/cart.service';
 import { ProductService } from '../../services/product.service';
 import { InputQuantityComponent } from '../input-quantity/input-quantity.component';
 import { LoadingSpinnerComponent } from '../loading-spinner/loading-spinner.component';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -29,7 +30,8 @@ export class ProductDetailComponent {
   constructor(
     private productService: ProductService,
     private cartService: CartService,
-    private title: Title
+    private title: Title,
+    private toast: ToastService
   ) {}
 
   quantity: number = 1;
@@ -56,5 +58,7 @@ export class ProductDetailComponent {
     };
 
     this.cartService.addItem(item);
+
+    this.toast.showToast('success', 'Item has been added to cart! 🎉');
   }
 }

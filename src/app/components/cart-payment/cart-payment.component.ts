@@ -1,68 +1,61 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CartService } from '../../services/cart.service';
+
+interface Form {
+  fullName: string;
+  address: string;
+  creditCardNumber: string;
+}
 
 @Component({
   selector: 'app-cart-payment',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './cart-payment.component.html',
   styleUrl: './cart-payment.component.css',
 })
 export class CartPaymentComponent implements OnInit {
-  form!: FormGroup;
+  form: Form = {
+    fullName: '',
+    address: '',
+    creditCardNumber: '',
+  };
   totalPrice = this.cartService.totalPrice$;
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private cartService: CartService
-  ) {}
+  constructor(private cartService: CartService, private route: Router) {}
+  // Validators.pattern(/^\d+$/),
 
-  ngOnInit(): void {
-    this.form = this.formBuilder.group({
-      fullName: [
-        '',
-        Validators.compose([Validators.required, Validators.minLength(3)]),
-      ],
-      address: [
-        '',
-        Validators.compose([
-          Validators.required,
-          Validators.minLength(6),
-          Validators.pattern(/^\d+$/),
-        ]),
-      ],
-      creditCardNumber: [
-        '',
-        Validators.compose([
-          Validators.required,
-          Validators.minLength(16),
-          Validators.maxLength(16),
-        ]),
-      ],
-    });
-  }
+  ngOnInit(): void {}
 
-  onCheckout(): void {
-    this.markFormGroupTouched(this.form);
-    if (!this.form.valid) {
+  onCheckout(userForm: NgForm): void {
+    this.markFormGroupTouched(userForm);
+
+    if (userForm.invalid) {
+      userForm.controls;
       return;
     }
-    // Handle invalid form
-    console.log('Form submitted successfully:', this.form.value);
+
+    let totalPrice;
+
+    this.cartService.totalPrice$.subscribe((data) => (totalPrice = data));
+
+    this.route.navigate([
+      '/checkout',
+      {
+        name: this.form.fullName,
+        price: totalPrice,
+      },
+    ]);
   }
 
-  private markFormGroupTouched(formGroup: FormGroup): void {
+  private markFormGroupTouched(formGroup: NgForm): void {
     Object.values(formGroup.controls).forEach((control) => {
       control.markAsTouched();
 
-      if (control instanceof FormGroup) {
+      if (control instanceof NgForm) {
         this.markFormGroupTouched(control);
       }
     });

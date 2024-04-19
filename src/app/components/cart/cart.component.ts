@@ -1,4 +1,4 @@
-import { Location } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NgIconComponent, provideIcons } from '@ng-icons/core';
@@ -17,6 +17,7 @@ import { CartPaymentComponent } from '../cart-payment/cart-payment.component';
     NgIconComponent,
     CartItemComponent,
     CartPaymentComponent,
+    CommonModule,
   ],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css',

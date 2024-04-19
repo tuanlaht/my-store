@@ -20,9 +20,10 @@
   }@else {
   <div class="grid grid-cols-1 gap-x-8 lg:grid-cols-2">
     <div>
-      @for (product of cart; track $index) {
-      <app-cart-item [product]="product"></app-cart-item>
-      }
+      <app-cart-item
+        *ngFor="let product of cart"
+        [product]="product"
+      ></app-cart-item>
     </div>
 
     <div>

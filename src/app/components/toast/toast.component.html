@@ -1,0 +1,24 @@
+@if (toast.isVisible$ | async) {
+<div
+  class="flex items-center w-full max-w-xs p-4 text-gray-800 bg-green-200 rounded-lg shadow fixed z-50 top-20 right-0 sm:right-12"
+  [class]="toast.toastState$ | async"
+  role="alert"
+  @toastTrigger
+>
+  <div
+    class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg"
+  >
+    <ng-icon name="heroCheckCircleSolid" size="22"></ng-icon>
+  </div>
+
+  <div class="ms-3 text-sm font-normal">{{ toast.toastMessage$ | async }}</div>
+
+  <button
+    type="button"
+    class="ms-auto -mx-1.5 -my-1.5 bg-green-200 text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-green-700 p-1.5 hover:bg-green-300 inline-flex items-center justify-center h-8 w-8"
+    (click)="dismiss()"
+  >
+    <ng-icon name="heroXMark" size="20"></ng-icon>
+  </button>
+</div>
+}

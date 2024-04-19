@@ -4,11 +4,12 @@ import { Product } from '../../models/Product';
 import { ProductService } from '../../services/product.service';
 import { LoadingSpinnerComponent } from '../loading-spinner/loading-spinner.component';
 import { ProductItemComponent } from '../product-item/product-item.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [ProductItemComponent, LoadingSpinnerComponent],
+  imports: [ProductItemComponent, LoadingSpinnerComponent, CommonModule],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css',
   animations: [fadeAnimation],

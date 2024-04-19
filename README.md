@@ -1,27 +1,28 @@
 # MyStore
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.3.
+The project uses angular, describing simple functions of a store front page
+
+## About The Project
+
+![about project](src\assets\example.png)
+
+This project utilizes Angular v17 and Tailwind CSS to develop a simple online store. Its main functionalities include:
+
+- **Product list page:** Displays the price, name, and image of products.
+- **Product detail page:** Allows users to view detailed information about a product.
+- **Cart page:** Users can select products and quantities to add to their cart.
+- **Checkout:** After adding items to the cart, users can input their name, address, and credit card number to proceed with checkout.
+- **Checkout confirmation:** Upon successful checkout, a confirmation screen will be displayed.
+- **Responsive:** Allow desktop, tablet screens
+
+## Install Package
+
+Run `npm install` to install all package
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
